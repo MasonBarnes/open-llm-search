@@ -6,3 +6,4 @@ openai
 ujson
 Flask
 gunicorn
+python-dotenv
