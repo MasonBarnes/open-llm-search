@@ -120,7 +120,14 @@ def search(query: str, proxies: dict = None) -> tuple[list[str], list[dict]]:
     This function takes a query as input, gets top Google search links for the query, and then scrapes the text from the links.
     It returns a tuple containing the list of links and a list of dictionaries. Each dictionary contains the URL and the summarized text from the link.
     """
-    links = get_google_search_links(query, proxies=proxies)
+    links = []
+
+    for _ in range(3):
+        if len(links) == 0:
+            links = get_google_search_links(query, proxies=proxies)
+        else:
+            break
+
     sources = scrape_text_from_links(links, proxies=proxies)
 
     return links, sources
